@@ -22,7 +22,7 @@ export default class Header extends React.Component {
                                 exact
                             >
                                 <span
-                                    style={{ color: "red", fontWeight: "bold" }}
+                                    style={{ color: "#000", fontWeight: "lighter" }}
                                 >
                                     Home
                                 </span>
