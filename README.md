@@ -1,4 +1,4 @@
-# konuxdemoa 
+# Konux Demo 
 ## React-Redux-Observables & D3
 
 ### Provides
