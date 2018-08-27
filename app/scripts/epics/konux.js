@@ -6,29 +6,37 @@
 import { Observable } from "rxjs/Observable";
 
 import { ActionTypes } from "constants/index";
+import { apiHelper } from "../utils/konux";
 
 export function getApiData(action$, state) {
-    return action$
-        .ofType(ActionTypes.ADD_TO_PLAYLIST_REQUEST)
-        .switchMap((data) =>{
-            const arr = state.getState().netflix.playlist;
+    return action$.ofType(ActionTypes.ADD_TO_PLAYLIST_REQUEST).switchMap(() => {
+        fromPromise(apiHelper())
+            .flatMap(data => {
+                const activeStep = state.getState().kit.activeStep + 1;
 
-            if(arr.filter(vendor => vendor.name === data.payload.name).length === 0)
-                arr.push(data.payload);
-
-            return Observable.of({
-                type: ActionTypes.ADD_TO_PLAYLIST_SUCCESS,
-                payload : {arr, length : arr.length}
+                return Observable.of(
+                    {
+                        type: ActionTypes.CHOOSE_SPORT_SUCCESS,
+                        payload: data
+                    },
+                    {
+                        type: ActionTypes.STEPPER_COUNTER_UPDATE,
+                        payload: { activeStep }
+                    }
+                );
             })
-        }
-        ).catch(error => [
-            {
-                type: ActionTypes.ADD_TO_PLAYLIST_FAILURE,
-                payload: {
-                    message: error.message,
-                    status: error.status
-                },
-                error: true
-            }
-        ]);
+            .catch(error =>
+                Observable.of(
+                    {
+                        type: ActionTypes.CHOOSE_SPORT_FAILURE,
+                        payload: { error },
+                        error: true
+                    },
+                    showAlert("Unable to select Sport", {
+                        type: "error",
+                        icon: "i-flash"
+                    })
+                )
+            );
+    });
 }
