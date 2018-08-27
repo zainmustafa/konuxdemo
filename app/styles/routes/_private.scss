@@ -1,0 +1,37 @@
+.app__private {
+    background-color: #000;
+
+    h2 {
+        color: #fff;
+        margin-bottom: $grid-gutter-width;
+    }
+
+    &__running {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 20vh;
+    }
+
+    .list__container {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__repos {
+        > div {
+            a {
+                font-size: $font-size-h5;
+                margin-bottom: $grid-gutter-width / 6;
+            }
+
+            + div {
+                margin-top: $grid-gutter-width / 3;
+            }
+        }
+    }
+}

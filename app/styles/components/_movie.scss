@@ -1,0 +1,58 @@
+.app__movie {
+    $textRight: 2rem;
+    $textPosition: absolute;
+    background-color: $white;
+    font-size: 1.4rem;
+
+    margin: 1rem;
+
+    .movie__container {
+        color: #fff;
+        height: 35rem;
+        position: relative;
+        text-align: center;
+        width: 25rem;
+
+        > img {
+            height: 35rem;
+            width: 25rem;
+        }
+    }
+
+    .movie__bottom__name {
+        bottom: 6rem;
+        left: $textRight;
+        position: $textPosition;
+    }
+
+    .movie__bottom__genre {
+        bottom: 4rem;
+        left: $textRight;
+        position: $textPosition;
+    }
+
+    .movie__bottom__yor {
+        bottom: 2rem;
+        left: $textRight;
+        position: $textPosition;
+    }
+
+    .movie__bottom__icon {
+        bottom: 1rem;
+        position: $textPosition;
+        right: 1rem;
+
+        > button > img {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    .movie__bottom__background {
+        background-color: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        height: 10rem;
+        position: $textPosition;
+        width: 100%;
+    }
+}
