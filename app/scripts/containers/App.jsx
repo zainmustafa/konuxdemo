@@ -10,6 +10,7 @@ import history from "modules/history";
 import config from "config";
 
 import Home from "routes/Home";
+import Konux from "routes/Konux";
 import NotFound from "routes/NotFound";
 
 import Header from "components/Header";
@@ -44,6 +45,7 @@ export class App extends React.Component {
                     <main className="app__main">
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <Route exact path="/konux" component={Konux} />
                             <Route component={NotFound} />
                         </Switch>
                     </main>

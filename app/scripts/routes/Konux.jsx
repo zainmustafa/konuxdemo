@@ -6,7 +6,7 @@ import config from "config";
 
 import Logo from "components/Logo";
 
-export class Home extends PureComponent {
+export class Konux extends PureComponent {
     render() {
         return (
             <div key="Home" className="app__home app__route">
@@ -111,4 +111,4 @@ export class Home extends PureComponent {
     }
 }
 
-export default connect()(Home);
+export default connect()(Konux);

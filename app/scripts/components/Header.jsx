@@ -24,28 +24,21 @@ export default class Header extends React.Component {
                                 <span
                                     style={{ color: "red", fontWeight: "bold" }}
                                 >
-                                    Konux
+                                    Home
                                 </span>
                             </NavLink>
                         </li>
                         <li>
                             <NavLink
-                                to="/private"
+                                to="/konux"
                                 className="app__header__link"
                                 activeClassName="is-active"
                             >
-                                Home
+                                Konux
                             </NavLink>
                         </li>
                         <li>
-                                <NavLink
-                                    to="/playlist"
-                                    className="app__header__logout btn btn-sm btn-outline-primary btn-icon"
-                                    activeClassName="is-active"
-                                    exact
-                                >
-                                    <i className="i-playlist" />
-                                </NavLink>
+                                
                         </li>
                     </ul>
                 </div>
