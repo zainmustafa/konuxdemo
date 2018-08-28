@@ -11,9 +11,8 @@ import { ActionTypes } from "constants/index";
  * @param {Object} payload
  * @returns {Object}
  */
-export function konuxApiData(payload : Object): Object {
+export function konuxApiData(): Object {
     return {
-        type: ActionTypes.FETCH_API_DATA,
-        payload
+        type: ActionTypes.FETCH_API_DATA
     };
 }

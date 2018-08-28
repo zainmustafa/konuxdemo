@@ -5,7 +5,6 @@ export function apiHelper() {
         fetch("http://konuxdata.getsandbox.com/data")
             .then(response => response.json())
             .then(function(data) {
-                console.log(data);
                 resolve(JSON.stringify(data));
             })
             .error(function(err){
