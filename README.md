@@ -31,15 +31,15 @@
         - D3 line chart chart
         
 ### List Of Task
-    Markup : * Add route konux
-                * Add D3 Line chart.
-                * provided array values were not in order date wise. 
-                * converting dates type UTC to d3 timeformat. 
-                * Distributed Line chart in components. 
-             * app/scripts/components/chart/*.jsx
-                * app/scripts/routes/konux.jsx
-             * Redux-Observables for state management and data fetchign. 
-                * app/scripts/actions/konux.jsx
-                * app/scripts/epics/konux.jsx
-                * app/scripts/reducers/konux.jsx
-                * app/scripts/utils/apiHelper.jsx
+    * Add route konux
+        * Add D3 Line chart.
+        * provided array values were not in order date wise. 
+        * converting dates type UTC to d3 timeformat. 
+        * Distributed Line chart in components. 
+    * app/scripts/components/chart/*.jsx
+        * app/scripts/routes/konux.jsx
+    * Redux-Observables for state management and data fetchign. 
+        * app/scripts/actions/konux.jsx
+        * app/scripts/epics/konux.jsx
+        * app/scripts/reducers/konux.jsx
+        * app/scripts/utils/apiHelper.jsx
