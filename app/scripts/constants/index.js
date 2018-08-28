@@ -15,7 +15,6 @@ export const ActionTypes: Object = keyMirror({
     FETCH_API_DATA: undefined,
     FETCH_API_DATA_SUCCESS: undefined,
     FETCH_API_DATA_FAILURE: undefined,
-    FETCH_POPULAR_REPOS_CANCEL: undefined,
     CANCEL_FETCH: undefined,
     SHOW_ALERT: undefined,
     HIDE_ALERT: undefined
