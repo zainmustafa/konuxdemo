@@ -1,7 +1,5 @@
 import React, { PureComponent } from "react";
-import { connect } from "react-redux";
 import config from "config";
-
 import Logo from "components/Logo";
 
 export class Home extends PureComponent {
@@ -30,4 +28,4 @@ export class Home extends PureComponent {
     }
 }
 
-export default connect()(Home);
+export default Home;
