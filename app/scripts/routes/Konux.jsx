@@ -1,114 +1,94 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import SVG from "react-inlinesvg";
+import * as d3 from "d3";
 
-import config from "config";
-
-import Logo from "components/Logo";
+import { konuxApiData } from "../actions";
 
 export class Konux extends PureComponent {
+    componentDidMount() {
+        this.props.konuxApiData();
+    }
+    renderD3 = () => {
+        let svg = d3.select(this.refs.anchor),
+            margin = { top: 20, right: 20, bottom: 30, left: 50 },
+            width = +svg.attr("width") - margin.left - margin.right - 50,
+            height = +svg.attr("height") - margin.top - margin.bottom - 20,
+            g = svg
+                .append("g")
+                .attr(
+                    "transform",
+                    "translate(" + margin.left + "," + margin.top + ")"
+                );
+
+        let utcParse = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z");
+
+        let x = d3.scaleTime().rangeRound([0, width - 100]);
+
+        let y = d3.scaleLinear().rangeRound([height, 0]);
+        let line = d3
+            .line()
+            .x(d => {
+                console.log("x", x(d.x));
+                return x(d.x);
+            })
+            .y(d => {
+                console.log("y", y(d.y));
+                return y(d.y);
+            });
+        
+        let {data} = this.props;
+        data = data.map(item => {
+            item.x = utcParse(item.x);
+            return item;
+        })
+        x.domain(d3.extent(data, d => d.x));
+        y.domain(d3.extent(data, d => d.y));
+        g.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+            .select(".domain")
+            .remove();
+
+        g.append("g")
+            .call(d3.axisLeft(y))
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("Value");
+
+        g.append("path")
+            .datum(data)
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 1.5)
+            .attr("d", line);
+    };
     render() {
+        this.props.data.length && this.renderD3();
         return (
             <div key="Home" className="app__home app__route">
-                <div className="app__home__intro">
-                    <div className="app__container">
-                        <div className="app__home__header">
-                            <Logo />
-                        </div>
-                        <h1>{config.title}</h1>
-                        <p>{config.description}</p>
-                        <a
-                            href="https://github.com/zainmustafa/konuxdemo"
-                            className="app__home__download btn btn-lg btn-primary btn-icon"
-                            target="_blank"
-                        >
-                            <i className="i-github" />
-                            <span>GitHub</span>
-                        </a>
-                    </div>
-                </div>
-                <div className="app__home__libraries">
-                    <div className="app__container">
-                        <h2>Provides</h2>
-                        <ul>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/react.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>React</h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/redux.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>Redux</h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/redux-observable.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>Redux Observable</h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/react-router.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>react-router</h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/reactivex.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>RxJS</h4>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="app__home__library">
-                                    <div className="app__home__library__image">
-                                        <SVG
-                                            src={require("assets/media/logos/webpack.svg")}
-                                        />
-                                    </div>
-                                    <div className="app__home__library__content">
-                                        <h4>Webpack 2.x</h4>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <svg width="960" height="500" ref="anchor" />
             </div>
         );
     }
 }
 
-export default connect()(Konux);
+function mapStateToProps(state) {
+    return {
+        data: state.konux.values
+    };
+}
+
+const mapDispatchToProps = {
+    konuxApiData
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Konux);

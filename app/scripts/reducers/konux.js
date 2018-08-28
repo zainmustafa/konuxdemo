@@ -21,7 +21,7 @@ export default {
         },
         [ActionTypes.FETCH_API_DATA_SUCCESS](state, { payload }) {
             return immutable(state, {
-                values: { $set: payload.values },
+                values: { $set: payload.data.values },
                 isLoading: { $set: false }
             });
         },
