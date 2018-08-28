@@ -1,22 +1,22 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import * as d3 from "d3";
-
-
+import moment from "moment"
 export class Chart extends PureComponent {
     static propTypes = {
-        konuxApiData: PropTypes.func.isRequired
+        data: PropTypes.array.isRequired
     };
-    componentDidMount(){
+    componentDidMount() {
         this.drawChart();
     }
-    
+
     drawChart = () => {
         let { data } = this.props;
+
         let svg = d3.select(this.refs.anchor),
             margin = { top: 20, right: 20, bottom: 30, left: 50 },
-            width = +svg.attr("width") - margin.left - margin.right - 50,
-            height = +svg.attr("height") - margin.top - margin.bottom - 20,
+            width = +svg.attr("width") - margin.left - margin.right,
+            height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg
                 .append("g")
                 .attr(
@@ -24,25 +24,20 @@ export class Chart extends PureComponent {
                     "translate(" + margin.left + "," + margin.top + ")"
                 );
 
-        let x = d3.scaleTime().rangeRound([0, width - 100]);
+        let x = d3.scaleTime().rangeRound([0, width]);
 
         let y = d3.scaleLinear().rangeRound([height, 0]);
         let line = d3
             .line()
-            .x(d => {
-                console.log("x", x(d.x));
-                return x(d.x);
-            })
-            .y(d => {
-                console.log("y", y(d.y));
-                return y(d.y);
-            });
+            .x(d => x(d.x))
+            .y(d => y(d.y));
 
-        let utcParse = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z");
-
-        data = data.map(item => {
-            item.x = utcParse(item.x);
-            return item;
+        let timeParse = d3.timeParse("%Y-%m-%d %H:%M:%S");
+        console.log(data);
+        data = data.map(d => {
+            console.log(typeof d.y);
+            d.x = timeParse(moment.utc(d.x).format("YYYY-MM-DD HH:mm:ss"));
+            return d;
         });
 
         x.domain(d3.extent(data, d => d.x));
@@ -70,7 +65,23 @@ export class Chart extends PureComponent {
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 1.5)
-            .attr("d", line);
+            .attr("d", line)
+
+
+// tRansitions
+            // .call(transition);
+
+
+            // function transition(path) {
+            //     path.transition()
+            //         .duration(2000)
+            //         .attrTween("stroke-dasharray", tweenDash);
+            // }
+            // function tweenDash() {
+            //     var l = this.getTotalLength(),
+            //         i = d3.interpolateString("0," + l, l + "," + l);
+            //     return function (t) { return i(t); };
+            // }
     };
     render() {
         return <svg width="960" height="500" ref="anchor" />;
