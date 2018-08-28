@@ -1,4 +1,7 @@
 .app__konux {
+    width : 50%;
+    margin : auto;
+
     &__running {
         align-items: center;
         display: flex;
@@ -8,6 +11,7 @@
     }
 
     .konux__loader {
+        margin : auto;
         border: 16px solid #f3f3f3; /* Light grey */
         border-top: 16px solid #3498db; /* Blue */
         border-radius: 50%;
