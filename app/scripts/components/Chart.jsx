@@ -11,7 +11,7 @@ export class Chart extends PureComponent {
     static propTypes = {
         data: PropTypes.array.isRequired
     };
-    constructor(props){
+    constructor(props) {
         super(props);
         let { data } = props;
 
@@ -31,9 +31,7 @@ export class Chart extends PureComponent {
             data
         };
     }
-    componentDidMount() {
-        
-    }
+    componentDidMount() {}
 
     render() {
         const { width, height, margin, data } = this.state;

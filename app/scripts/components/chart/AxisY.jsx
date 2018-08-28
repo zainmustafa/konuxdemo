@@ -23,7 +23,7 @@ export class AxisY extends PureComponent {
             .text("Value");
     }
     render() {
-        return <g ref="yAxis" />
+        return <g ref="yAxis" />;
     }
 }
 

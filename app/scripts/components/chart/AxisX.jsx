@@ -9,7 +9,6 @@ export class AxisX extends PureComponent {
         height: PropTypes.number.isRequired
     };
     componentDidMount() {
-
         let { height, width, data } = this.props;
         let x = d3.scaleTime().rangeRound([0, width]);
         x.domain(d3.extent(data, d => d.x));
@@ -21,7 +20,7 @@ export class AxisX extends PureComponent {
     }
 
     render() {
-        return <g ref="xAxis" />
+        return <g ref="xAxis" />;
     }
 }
 

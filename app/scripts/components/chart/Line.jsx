@@ -9,12 +9,11 @@ export class Line extends PureComponent {
         height: PropTypes.number.isRequired
     };
     componentDidMount() {
-
         let { data, height, width } = this.props;
-        
+
         let x = d3.scaleTime().rangeRound([0, width]);
         let y = d3.scaleLinear().rangeRound([height, 0]);
-        
+
         x.domain(d3.extent(data, d => d.x));
         y.domain(d3.extent(data, d => d.y));
 
@@ -23,7 +22,7 @@ export class Line extends PureComponent {
             .x(d => x(d.x))
             .y(d => y(d.y));
 
-            d3.select(this.refs.path)
+        d3.select(this.refs.path)
             .datum(data)
             .attr("fill", "none")
             .attr("stroke", "steelblue")
@@ -48,7 +47,7 @@ export class Line extends PureComponent {
     }
 
     render() {
-        return <path ref="path" ></path>
+        return <path ref="path" />;
     }
 }
 
