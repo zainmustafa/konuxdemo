@@ -31,7 +31,20 @@ export class Line extends PureComponent {
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 1.5)
             .attr("d", line)
-            
+            .call(transition);
+
+        function transition(path) {
+            path.transition()
+                .duration(2000)
+                .attrTween("stroke-dasharray", tweenDash);
+        }
+        function tweenDash() {
+            var l = this.getTotalLength(),
+                i = d3.interpolateString("0," + l, l + "," + l);
+            return function(t) {
+                return i(t);
+            };
+        }
     }
 
     render() {
