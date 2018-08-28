@@ -30,7 +30,7 @@
     '/konux' 
         - D3 line chart chart
         
-### List Of Task
+### List of Tasks
     * Add route konux
         * Add D3 Line chart.
         * provided array values were not in order date wise. 
