@@ -2,7 +2,7 @@
 ## React-Redux-Observables & D3
 
 ### Link
-Markup : https://konuxdemo.firebaseapp.com/
+ https://konuxdemo.firebaseapp.com/
 
 ### Provides
 - react ^16.x
