@@ -9,7 +9,7 @@ import { ActionTypes } from "constants/index";
 
 export const konuxState = {
     values: [],
-    isLoading : false,
+    isLoading: false
 };
 
 export default {
@@ -20,8 +20,11 @@ export default {
             });
         },
         [ActionTypes.FETCH_API_DATA_SUCCESS](state, { payload }) {
+            let values = payload.data.values.sort(
+                (a, b) => new Date(a.x) - new Date(b.x)
+            );
             return immutable(state, {
-                values: { $set: payload.data.values },
+                values: { $set: values },
                 isLoading: { $set: false }
             });
         },
