@@ -4,29 +4,28 @@
  */
 import immutable from "immutability-helper";
 import { createReducer } from "modules/helpers";
-// import { parseError } from "modules/client";
 
 import { ActionTypes } from "constants/index";
 
 export const konuxState = {
-    playlist: [],
+    values: [],
     isLoading : false,
 };
 
 export default {
     konux: createReducer(konuxState, {
-        [ActionTypes.ADD_TO_PLAYLIST_REQUEST](state) {
+        [ActionTypes.FETCH_API_DATA](state) {
             return immutable(state, {
                 isLoading: { $set: true }
             });
         },
-        [ActionTypes.ADD_TO_PLAYLIST_SUCCESS](state, { payload }) {
+        [ActionTypes.FETCH_API_DATA_SUCCESS](state, { payload }) {
             return immutable(state, {
-                playlist: { $set: payload.arr },
+                values: { $set: payload.values },
                 isLoading: { $set: false }
             });
         },
-        [ActionTypes.ADD_TO_PLAYLIST_FAILURE](state) {
+        [ActionTypes.FETCH_API_DATA_FAILURE](state) {
             return immutable(state, {
                 isLoading: { $set: true }
             });

@@ -7,13 +7,13 @@
 import { ActionTypes } from "constants/index";
 
 /**
- * AddToPlayList
+ * KonuxApiData
  * @param {Object} payload
  * @returns {Object}
  */
-export function addToPlayList(payload : Object): Object {
+export function konuxApiData(payload : Object): Object {
     return {
-        type: ActionTypes.ADD_TO_PLAYLIST_REQUEST,
+        type: ActionTypes.FETCH_API_DATA,
         payload
     };
 }

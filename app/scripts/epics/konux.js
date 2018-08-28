@@ -8,7 +8,7 @@ import { Observable } from "rxjs/Observable";
 import { ActionTypes } from "constants/index";
 import { apiHelper } from "../utils/konux";
 
-export function getApiData(action$) {
+export function konuxApiData(action$) {
     return action$.ofType(ActionTypes.ADD_TO_PLAYLIST_REQUEST).switchMap(() => {
         fromPromise(apiHelper())
             .flatMap(data =>

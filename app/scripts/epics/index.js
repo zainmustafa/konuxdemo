@@ -4,6 +4,6 @@
  */
 
 import { combineEpics } from "redux-observable";
-import { getApiData } from "./konux";
+import { konuxApiData } from "./konux";
 
-export default combineEpics(getApiData);
+export default combineEpics(konuxApiData);
