@@ -24,6 +24,7 @@
         "classlist-polyfill": "^1.2.0",
         "classnames": "^2.2.5",
         "core-js": "^2.5.3",
+        "d3": "^5.7.0",
         "ease-component": "^1.0.0",
         "fbjs": "^0.8.16",
         "firebase": "^5.2.0",
@@ -142,7 +143,6 @@
         "bundlesize": "bundlesize",
         "deploy": "node tools deploy",
         "publish": "node tools publish",
-        
         "postmerge": "node tools dependencies && npm update"
     },
     "browserslist": [
