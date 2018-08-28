@@ -23,13 +23,23 @@
 
 `yarn start`
 
-### Tests
-- jest ^22.x
-- enzyme ^3.x
-
-`yarn test`
-`yarn run test:watch`
-
-### Eslint
-- `yarn lint`
-- `yarn lint:styles`
+### Pages
+    '/' Home
+        - Link to github repository.
+        - Click on konux to see d3 chart.
+    '/konux' 
+        - D3 line chart chart
+        
+### List Of Task
+Markup  :   * Add route konux
+                * Add D3 Line chart.
+                * provided array values were not in order date wise. 
+                * converting dates type UTC to d3 timeformat. 
+                * Distributed Line chart in components. 
+            * app/scripts/components/chart/*.jsx
+                * app/scripts/routes/konux.jsx
+            * Redux-Observables for state management and data fetchign. 
+                * app/scripts/actions/konux.jsx
+                * app/scripts/epics/konux.jsx
+                * app/scripts/reducers/konux.jsx
+                * app/scripts/utils/apiHelper.jsx
